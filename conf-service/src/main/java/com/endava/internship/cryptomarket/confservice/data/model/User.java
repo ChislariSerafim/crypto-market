@@ -4,11 +4,13 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
+import static lombok.AccessLevel.PRIVATE;
+
 @Getter
 @Setter
 @Builder
 @EqualsAndHashCode(of = "username")
-@AllArgsConstructor
+@AllArgsConstructor(access = PRIVATE)
 public class User {
 
     private final String username;
