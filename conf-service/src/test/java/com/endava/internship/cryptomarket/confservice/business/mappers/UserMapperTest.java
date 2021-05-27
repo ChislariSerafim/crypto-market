@@ -1,9 +1,7 @@
 package com.endava.internship.cryptomarket.confservice.business.mappers;
 
-import com.endava.internship.cryptomarket.confservice.business.UserServiceImpl;
 import com.endava.internship.cryptomarket.confservice.business.model.UserDto;
 import com.endava.internship.cryptomarket.confservice.data.model.User;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
@@ -16,11 +14,10 @@ import static java.time.LocalDateTime.now;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-public class UserMapperTest {
+class UserMapperTest {
 
     private UserMapper userMapper;
     private User testUser;
-    private UserDto testUserDto;
     private UserDto testDetailedUserDto;
     private final LocalDateTime TIME = now();
 
@@ -29,9 +26,7 @@ public class UserMapperTest {
         userMapper = Mappers.getMapper(UserMapper.class);
         testUser = User.builder().username("user").email("email@gmail.com")
                 .role(OPERAT).status(ACTIVE).createdOn(TIME).updatedOn(TIME).updatedBy("User").build();
-        testUserDto = UserDto.builder().username("user").email("email@gmail.com")
-                .role(OPERAT).status(ACTIVE).build();
-        testDetailedUserDto = UserDto.builder().username("user").email("email@gmail.com")
+         testDetailedUserDto = UserDto.builder().username("user").email("email@gmail.com")
                 .role(OPERAT).status(ACTIVE).createdOn(TIME).updatedOn(TIME).updatedBy("User").build();
     }
 

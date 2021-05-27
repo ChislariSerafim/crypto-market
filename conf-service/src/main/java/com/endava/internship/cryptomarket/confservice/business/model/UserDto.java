@@ -1,12 +1,26 @@
 package com.endava.internship.cryptomarket.confservice.business.model;
 
-import com.endava.internship.cryptomarket.confservice.business.validators.annotations.*;
-import com.endava.internship.cryptomarket.confservice.business.validators.orders.*;
+import com.endava.internship.cryptomarket.confservice.business.validators.annotations.CreatedUserNotInactv;
+import com.endava.internship.cryptomarket.confservice.business.validators.annotations.NonExistent;
+import com.endava.internship.cryptomarket.confservice.business.validators.annotations.ValidAmendRequest;
+import com.endava.internship.cryptomarket.confservice.business.validators.annotations.ValidCreateRequest;
+import com.endava.internship.cryptomarket.confservice.business.validators.annotations.ValidEmail;
+import com.endava.internship.cryptomarket.confservice.business.validators.annotations.ValidUsername;
+import com.endava.internship.cryptomarket.confservice.business.validators.orders.NonExistentOrder5400;
+import com.endava.internship.cryptomarket.confservice.business.validators.orders.UserStatusOrder2200_2300;
+import com.endava.internship.cryptomarket.confservice.business.validators.orders.ValidAmendOrder5200;
+import com.endava.internship.cryptomarket.confservice.business.validators.orders.ValidCreateOrder5300;
+import com.endava.internship.cryptomarket.confservice.business.validators.orders.ValidUserOrder5400;
 import com.endava.internship.cryptomarket.confservice.data.model.Roles;
 import com.endava.internship.cryptomarket.confservice.data.model.Status;
 import com.endava.internship.cryptomarket.confservice.data.model.User;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 

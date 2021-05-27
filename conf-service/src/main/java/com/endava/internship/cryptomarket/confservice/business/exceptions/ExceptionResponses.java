@@ -1,15 +1,14 @@
 package com.endava.internship.cryptomarket.confservice.business.exceptions;
 
+import com.endava.internship.cryptomarket.confservice.business.model.ApiError;
+import lombok.Getter;
+
 import static javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 import static javax.servlet.http.HttpServletResponse.SC_FORBIDDEN;
 import static javax.servlet.http.HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
 import static javax.servlet.http.HttpServletResponse.SC_NOT_ACCEPTABLE;
 import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 import static javax.servlet.http.HttpServletResponse.SC_UNAUTHORIZED;
-
-import com.endava.internship.cryptomarket.confservice.business.model.ApiError;
-
-import lombok.Getter;
 
 public enum ExceptionResponses {
     NONEXISTENT_USER_NOT_AUTHORIZED(SC_UNAUTHORIZED, "Unauthorized", "Requester %s does not exist.", 1000),

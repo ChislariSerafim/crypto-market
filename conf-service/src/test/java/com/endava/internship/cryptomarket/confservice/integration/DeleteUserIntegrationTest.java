@@ -1,13 +1,45 @@
 package com.endava.internship.cryptomarket.confservice.integration;
 
+import com.github.springtestdbunit.annotation.DatabaseSetup;
+import com.github.springtestdbunit.annotation.DatabaseTearDown;
+import lombok.SneakyThrows;
+import oracle.jdbc.pool.OracleDataSource;
+import org.dbunit.DataSourceBasedDBTestCase;
+import org.dbunit.dataset.DataSetException;
+import org.dbunit.dataset.xml.FlatXmlDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
+import org.dbunit.operation.DatabaseOperation;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javax.sql.DataSource;
+
+import static com.github.springtestdbunit.annotation.DatabaseOperation.CLEAN_INSERT;
+import static com.github.springtestdbunit.annotation.DatabaseOperation.DELETE_ALL;
 import static io.restassured.RestAssured.given;
 
-class DeleteUserIntegrationTest {
+class DeleteUserIntegrationTest extends DataSourceBasedDBTestCase {
+
+    private final static String FILENAME = "/testData.xml";
+    private String URL = "jdbc:oracle:thin:@//localhost:1521/pdb";
+    private String USERNAME = "crypto_market";
+    private String PASSWORD = "crypto_market";
 
     private final String url = "http://localhost:8080/conf-service/users/client2";
 
+    @BeforeEach
+    void setup() throws Exception {
+        super.setUp();
+    }
+
+    @AfterEach
+    void teardown() throws Exception {
+        super.tearDown();
+    }
+
+    @DatabaseSetup(value = "/testData.xml", type = CLEAN_INSERT)
+    @DatabaseTearDown(value = "/testData.xml", type = DELETE_ALL)
     @Test
     void whenDeleteUser_thenRespondAccordingToAPI() {
 
@@ -16,4 +48,19 @@ class DeleteUserIntegrationTest {
                 .then().assertThat().statusCode(204);
     }
 
+    protected FlatXmlDataSet getDataSet() throws DataSetException {
+        return new FlatXmlDataSetBuilder().build(this.getClass()
+                .getResourceAsStream(FILENAME));
+    }
+
+    @SneakyThrows
+    @Override
+    protected DataSource getDataSource() {
+        final OracleDataSource oracleDataSource = new OracleDataSource();
+        oracleDataSource.setDriverType("oracle.jdbc.driver.OracleDriver");
+        oracleDataSource.setURL(URL);
+        oracleDataSource.setUser(USERNAME);
+        oracleDataSource.setPassword(PASSWORD);
+        return oracleDataSource;
+    }
 }

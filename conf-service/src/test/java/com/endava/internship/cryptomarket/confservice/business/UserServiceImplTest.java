@@ -17,7 +17,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-import static com.endava.internship.cryptomarket.confservice.data.model.Roles.*;
+import static com.endava.internship.cryptomarket.confservice.data.model.Roles.ADMIN;
+import static com.endava.internship.cryptomarket.confservice.data.model.Roles.CLIENT;
+import static com.endava.internship.cryptomarket.confservice.data.model.Roles.OPERAT;
 import static com.endava.internship.cryptomarket.confservice.data.model.Status.ACTIVE;
 import static com.endava.internship.cryptomarket.confservice.data.model.Status.INACTV;
 import static java.time.LocalDateTime.now;

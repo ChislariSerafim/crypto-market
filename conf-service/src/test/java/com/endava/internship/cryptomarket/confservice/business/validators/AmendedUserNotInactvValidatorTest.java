@@ -14,7 +14,9 @@ import javax.validation.ConstraintValidatorContext;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import static com.endava.internship.cryptomarket.confservice.data.model.Status.*;
+import static com.endava.internship.cryptomarket.confservice.data.model.Status.ACTIVE;
+import static com.endava.internship.cryptomarket.confservice.data.model.Status.INACTV;
+import static com.endava.internship.cryptomarket.confservice.data.model.Status.SUSPND;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 

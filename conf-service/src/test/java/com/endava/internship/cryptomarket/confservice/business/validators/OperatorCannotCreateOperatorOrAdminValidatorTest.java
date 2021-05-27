@@ -14,7 +14,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import javax.validation.ConstraintValidatorContext;
 import java.util.stream.Stream;
 
-import static com.endava.internship.cryptomarket.confservice.data.model.Roles.*;
+import static com.endava.internship.cryptomarket.confservice.data.model.Roles.ADMIN;
+import static com.endava.internship.cryptomarket.confservice.data.model.Roles.CLIENT;
+import static com.endava.internship.cryptomarket.confservice.data.model.Roles.OPERAT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(MockitoExtension.class)
