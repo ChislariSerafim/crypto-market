@@ -1,14 +1,24 @@
 package com.endava.internship.cryptomarket.confservice.data.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
+
+import static lombok.AccessLevel.PRIVATE;
 
 @Getter
 @Setter
 @Builder
 @EqualsAndHashCode(of = "username")
-@AllArgsConstructor
+@AllArgsConstructor(access = PRIVATE)
+@RequiredArgsConstructor
+@ToString
 public class User {
 
     private final String username;

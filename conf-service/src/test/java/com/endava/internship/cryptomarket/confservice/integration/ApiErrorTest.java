@@ -6,17 +6,35 @@ import io.restassured.http.Method;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-import static com.endava.internship.cryptomarket.confservice.business.exceptions.ExceptionResponses.*;
+import static com.endava.internship.cryptomarket.confservice.business.exceptions.ExceptionResponses.ADMIN_NOT_ALLOWED_CREATE_ADMIN;
+import static com.endava.internship.cryptomarket.confservice.business.exceptions.ExceptionResponses.AUTHENTICATION_FAILURE;
+import static com.endava.internship.cryptomarket.confservice.business.exceptions.ExceptionResponses.DIFFERENT_USERNAME;
+import static com.endava.internship.cryptomarket.confservice.business.exceptions.ExceptionResponses.INACTIV_USER_AMEND;
+import static com.endava.internship.cryptomarket.confservice.business.exceptions.ExceptionResponses.INACTIV_USER_CREATE;
+import static com.endava.internship.cryptomarket.confservice.business.exceptions.ExceptionResponses.JSON_MALFORMED;
+import static com.endava.internship.cryptomarket.confservice.business.exceptions.ExceptionResponses.NONEXISTENT_USER_NOT_AUTHORIZED;
+import static com.endava.internship.cryptomarket.confservice.business.exceptions.ExceptionResponses.NOT_ACCEPTABLE_CONTENT;
+import static com.endava.internship.cryptomarket.confservice.business.exceptions.ExceptionResponses.OPERAT_NOT_ALLOWED_CREATE_ADMIN_OPERAT;
+import static com.endava.internship.cryptomarket.confservice.business.exceptions.ExceptionResponses.SELF_AMEND;
+import static com.endava.internship.cryptomarket.confservice.business.exceptions.ExceptionResponses.USER_ALREADY_EXISTS;
+import static com.endava.internship.cryptomarket.confservice.business.exceptions.ExceptionResponses.USER_ILLEGAL_STATE;
+import static com.endava.internship.cryptomarket.confservice.business.exceptions.ExceptionResponses.USER_MISSING_PROPERTY;
+import static com.endava.internship.cryptomarket.confservice.business.exceptions.ExceptionResponses.USER_NOT_ALLOWED_REMOVE;
+import static com.endava.internship.cryptomarket.confservice.business.exceptions.ExceptionResponses.USER_NOT_CHANGED;
+import static com.endava.internship.cryptomarket.confservice.business.exceptions.ExceptionResponses.USER_NOT_FOUND;
+import static com.endava.internship.cryptomarket.confservice.business.exceptions.ExceptionResponses.USER_SUSPND_ACCESS_FORBIDDEN;
 import static com.endava.internship.cryptomarket.confservice.data.model.Roles.ADMIN;
 import static com.endava.internship.cryptomarket.confservice.data.model.Roles.OPERAT;
 import static com.endava.internship.cryptomarket.confservice.data.model.Status.ACTIVE;
 import static com.endava.internship.cryptomarket.confservice.data.model.Status.INACTV;
-import static io.restassured.http.Method.*;
+import static io.restassured.http.Method.DELETE;
+import static io.restassured.http.Method.GET;
+import static io.restassured.http.Method.POST;
+import static io.restassured.http.Method.PUT;
 
 @RequiredArgsConstructor
 @Getter
-public enum
-ApiErrorTest {
+public enum ApiErrorTest {
     TEST1(POST, "http://localhost:8080/conf-service/users", "admin",
             "text/plain", NOT_ACCEPTABLE_CONTENT, "Should be a request object", ""),
     TEST2(PUT, "http://localhost:8080/conf-service/users/operat1", "admin",

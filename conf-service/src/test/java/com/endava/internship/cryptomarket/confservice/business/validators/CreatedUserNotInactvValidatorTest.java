@@ -15,7 +15,9 @@ import java.util.stream.Stream;
 
 import static com.endava.internship.cryptomarket.confservice.data.model.Roles.ADMIN;
 import static com.endava.internship.cryptomarket.confservice.data.model.Roles.OPERAT;
-import static com.endava.internship.cryptomarket.confservice.data.model.Status.*;
+import static com.endava.internship.cryptomarket.confservice.data.model.Status.ACTIVE;
+import static com.endava.internship.cryptomarket.confservice.data.model.Status.INACTV;
+import static com.endava.internship.cryptomarket.confservice.data.model.Status.SUSPND;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(MockitoExtension.class)

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <T_USER username = 'operat1' email = 'operat1@gmail.com'
+            role = 'OPERAT' status = 'ACTIVE' created_on = '2021-05-25 10:10:10.11'/>
+    <T_USER username = 'operat2' email = 'operat2@gmail.com'
+            role = 'OPERAT' status = 'ACTIVE' created_on = '2021-05-25 10:10:10.11'/>
+    <T_USER username = 'operat3' email = 'operat3@gmail.com'
+            role = 'OPERAT' status = 'SUSPND' created_on = '2021-05-25 10:10:10.11'/>
+    <T_USER username = 'operat4' email = 'operat4@gmail.com'
+            role = 'OPERAT' status = 'INACTV' created_on = '2021-05-25 10:10:10.11'/>
+    <T_USER username = 'client1' email = 'client1@gmail.com'
+            role = 'CLIENT' status = 'ACTIVE' created_on = '2021-05-25 10:10:10.11'/>
+    <T_USER username = 'client2' email = 'client2@gmail.com'
+            role = 'CLIENT' status = 'ACTIVE' created_on = '2021-05-25 10:10:10.11'/>
+    <T_USER username = 'admin' email = 'admin@gmail.com'
+            role = 'ADMIN' status = 'ACTIVE' created_on = '2021-05-25 10:10:10.11'/>
+</dataset>

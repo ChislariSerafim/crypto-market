@@ -1,7 +1,6 @@
 package com.endava.internship.cryptomarket.confservice.business.validators;
 
 import com.endava.internship.cryptomarket.confservice.business.UserService;
-import com.endava.internship.cryptomarket.confservice.business.model.UserDto;
 import com.endava.internship.cryptomarket.confservice.business.validators.annotations.NonExistent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

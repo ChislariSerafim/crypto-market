@@ -1,5 +1,6 @@
 package com.endava.internship.cryptomarket.confservice.business;
 
+import com.endava.internship.cryptomarket.confservice.business.mappers.UserMapper;
 import com.endava.internship.cryptomarket.confservice.business.model.UserDto;
 import com.endava.internship.cryptomarket.confservice.data.UserRepository;
 import com.endava.internship.cryptomarket.confservice.data.model.User;
@@ -16,7 +17,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-import static com.endava.internship.cryptomarket.confservice.data.model.Roles.*;
+import static com.endava.internship.cryptomarket.confservice.data.model.Roles.ADMIN;
+import static com.endava.internship.cryptomarket.confservice.data.model.Roles.CLIENT;
+import static com.endava.internship.cryptomarket.confservice.data.model.Roles.OPERAT;
 import static com.endava.internship.cryptomarket.confservice.data.model.Status.ACTIVE;
 import static com.endava.internship.cryptomarket.confservice.data.model.Status.INACTV;
 import static java.time.LocalDateTime.now;
@@ -33,14 +36,19 @@ class UserServiceImplTest {
     ArgumentCaptor<User> userCaptor;
     @Mock
     private UserRepository userRepository;
+    @Mock
+    private UserMapper userMapper;
     @InjectMocks
     private UserServiceImpl userService;
     private User testUser;
+    private UserDto testUserDto;
     private User testRequester;
 
     @BeforeEach
     void setUp() {
         testUser = User.builder().username("user").email("email@gmail.com")
+                .role(OPERAT).status(ACTIVE).build();
+        testUserDto = UserDto.builder().username("user").email("email@gmail.com")
                 .role(OPERAT).status(ACTIVE).build();
         testRequester = User.builder().username("admin").email("admin@gmail.com").role(ADMIN).status(ACTIVE).build();
     }
@@ -48,8 +56,9 @@ class UserServiceImplTest {
     @Test
     void whenGetAllUsers_thenReturnAllUsersFromRepository() {
         List<User> repositoryResponse = List.of(testUser);
-        UserDto[] expectedResponse = repositoryResponse.stream().map(UserDto::of).toArray(UserDto[]::new);
+        UserDto[] expectedResponse = new UserDto[]{testUserDto};
         when(userRepository.getAll()).thenReturn(repositoryResponse);
+        when(userMapper.entityToDto(testUser)).thenReturn(testUserDto);
 
         List<UserDto> receivedList = userService.getAllUsers(testRequester);
 
@@ -60,18 +69,19 @@ class UserServiceImplTest {
     @Test
     void whenGetUser_thenReturnUserFromRepository() {
         when(userRepository.get(testUsername)).thenReturn(Optional.of(testUser));
+        when(userMapper.entityToDetailedDto(testUser)).thenReturn(testUserDto);
 
         UserDto receivedUser = userService.getUser(testUsername, testRequester);
 
-        assertThat(receivedUser).isEqualTo(UserDto.of(testUser));
+        assertThat(receivedUser).isEqualTo(testUserDto);
         verify(userRepository).get(testUsername);
     }
 
     @Test
     void whenCreateUser_thenNoExceptionThrown() {
         LocalDateTime testDate = now();
-        UserDto testUserDto = UserDto.of(testUser);
         when(userRepository.save(testUser)).thenReturn(true);
+        when(userMapper.dtoToEntity(testUserDto)).thenReturn(testUser);
 
         assertThatNoException().isThrownBy(() -> userService.createUser(testUserDto, testRequester));
 

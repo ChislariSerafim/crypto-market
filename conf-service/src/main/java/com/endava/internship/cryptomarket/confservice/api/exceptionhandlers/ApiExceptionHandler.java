@@ -1,10 +1,9 @@
 package com.endava.internship.cryptomarket.confservice.api.exceptionhandlers;
 
-import java.util.Optional;
-
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
-
+import com.endava.internship.cryptomarket.confservice.business.exceptions.ExceptionResponses;
+import com.endava.internship.cryptomarket.confservice.business.model.ApiError;
+import com.endava.internship.cryptomarket.confservice.business.model.UserDto;
+import com.endava.internship.cryptomarket.confservice.data.model.User;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,19 +16,17 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
-import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
-import static org.springframework.http.HttpStatus.NOT_ACCEPTABLE;
-import static org.springframework.http.MediaType.APPLICATION_JSON;
-
-import com.endava.internship.cryptomarket.confservice.business.exceptions.ExceptionResponses;
-import com.endava.internship.cryptomarket.confservice.business.model.ApiError;
-import com.endava.internship.cryptomarket.confservice.business.model.UserDto;
-import com.endava.internship.cryptomarket.confservice.data.model.User;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+import java.util.Optional;
 
 import static com.endava.internship.cryptomarket.confservice.business.exceptions.ExceptionResponses.JSON_MALFORMED;
 import static com.endava.internship.cryptomarket.confservice.business.exceptions.ExceptionResponses.NOT_ACCEPTABLE_CONTENT;
 import static com.endava.internship.cryptomarket.confservice.business.exceptions.ExceptionResponses.REQUEST_OBJECT_VALIDATION_FAILURE;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
+import static org.springframework.http.HttpStatus.NOT_ACCEPTABLE;
+import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {

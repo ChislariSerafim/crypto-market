@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>cryptomarket-parent</artifactId>
+        <groupId>com.endava.internship.cryptomarket</groupId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>conf-db</artifactId>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <flyway-db.user>crypto_market</flyway-db.user>
+        <flyway-db.password>crypto_market</flyway-db.password>
+        <flyway-db.url>jdbc:oracle:thin:@//localhost:1521/pdb</flyway-db.url>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.oracle.ojdbc</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <version>19.3.0.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>6.0.3</version>
+                <configuration>
+                    <url>${flyway-db.url}</url>
+                    <user>${flyway-db.user}</user>
+                    <password>${flyway-db.password}</password>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
