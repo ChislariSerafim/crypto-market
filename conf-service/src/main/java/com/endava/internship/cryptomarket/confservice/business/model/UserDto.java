@@ -15,6 +15,7 @@ import static java.util.Objects.nonNull;
 
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "username")

@@ -1,5 +1,6 @@
 package com.endava.internship.cryptomarket.confservice.business;
 
+import com.endava.internship.cryptomarket.confservice.business.mappers.UserMapper;
 import com.endava.internship.cryptomarket.confservice.business.model.UserDto;
 import com.endava.internship.cryptomarket.confservice.data.UserRepository;
 import com.endava.internship.cryptomarket.confservice.data.model.User;
@@ -19,11 +20,13 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
+    private final UserMapper userMapper;
+
     @Override
     public List<UserDto> getAllUsers(
             User requester) {
         List<User> users = userRepository.getAll();
-        return users.stream().map(UserDto::of).collect(Collectors.toList());
+        return users.stream().map(userMapper::entityToDto).collect(Collectors.toList());
     }
 
     @Override
@@ -31,14 +34,14 @@ public class UserServiceImpl implements UserService {
             String username,
             User requester) {
         User user = userRepository.get(username).get();
-        return UserDto.ofDetailedUser(user);
+        return userMapper.entityToDetailedDto(user);
     }
 
     @Override
     public void createUser(
             UserDto newUser,
             User requester) {
-        User user = newUser.toUser();
+        User user = userMapper.dtoToEntity(newUser);
         user.setCreatedOn(now());
         user.setUpdatedBy(requester.getUsername());
         userRepository.save(user);

@@ -11,6 +11,7 @@
     <modules>
         <module>conf-service</module>
         <module>api-contracts</module>
+        <module>conf-db</module>
     </modules>
 
 
@@ -33,6 +34,7 @@
         <jackson-databind.version>2.12.1</jackson-databind.version>
         <hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
         <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
+        <mapstruct.version>1.4.1.Final</mapstruct.version>
     </properties>
 
 
@@ -100,6 +102,12 @@
                 <artifactId>hibernate-validator</artifactId>
                 <version>${hibernate-validator.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+                <scope>provided</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -140,11 +148,21 @@
                         <release>${java.version}</release>
                         <annotationProcessorPaths>
                             <path>
+                                <groupId>org.mapstruct</groupId>
+                                <artifactId>mapstruct-processor</artifactId>
+                                <version>${mapstruct.version}</version>
+                            </path>
+                            <path>
                                 <groupId>org.projectlombok</groupId>
                                 <artifactId>lombok</artifactId>
                                 <version>${lombok.version}</version>
                             </path>
                         </annotationProcessorPaths>
+                        <compilerArgs>
+                            <compilerArg>
+                                -Amapstruct.defaultComponentModel=spring
+                            </compilerArg>
+                        </compilerArgs>
                     </configuration>
                 </plugin>
                 <plugin>
